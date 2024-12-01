@@ -1,0 +1,61 @@
+-primero, si no tiene la imagen de ubuntu hay que descargarla
+
+docker pull ubuntu
+
+docker images
+
+-creamos red
+
+docker network create pulgi_net
+
+docker network ls
+
+dcoker network inspect pulgi_net
+
+***********************************************************************
+So I think the answer is simpler than many misleading answers above.
+
+To start an existing container which is stopped
+
+docker start <container-name/ID>
+To stop a running container
+
+docker stop <container-name/ID>
+Then to login to the interactive shell of a container
+
+docker exec -it <container-name/ID> bash
+To start an existing container and attach to it in one command
+
+docker start -ai <container-name/ID>
+Beware, this will stop the container on exit. But in general, you need to start the container, attach and stop it after you are done.
+
+*****************************************************************************
+
+creacion del contenedor m1 y m2, ejecutarlo e incluirlo en la red
+
+docker run -dit name m1 --network pulgi_net ubuntu
+
+docker run -dit name m2 --network pulgi_net ubuntu
+
+ejecucion de los contenedores
+
+docker exec -it m1 bash
+
+docker exec -it m2 bash
+
+instalacion de los paquetes en los dos paquetes
+
+apt-get update
+
+apt-get install net-tools
+
+apt-get install inetutils-ping
+
+dentro de los contenedores poner los codigos
+
+ifconfig - revisar la net
+
+ping - hacer ping entre los contenedores
+
+
+
